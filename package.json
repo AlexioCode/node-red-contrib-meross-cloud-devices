@@ -1,0 +1,27 @@
+{
+  "name": "node-red-contrib-meross-cloud-devices",
+  "version": "1.0.0",
+  "description": "A module for Node-Red that allows to retreive information from our online Meross devices (using Meross Cloud) and control them. It's an extended and modified version of the \"node-red-contrib-meross-cloud\" module.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexioCode/node-red-contrib-meross-cloud-devices.git"
+  },
+  "keywords": [
+    "Meross", "Node-RED", "Smart Home", "IoT"
+  ],
+  "author": "Alejandro Pedro Alonso-Basurto Díaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexioCode/node-red-contrib-meross-cloud-devices/issues"
+  },
+  "homepage": "https://github.com/AlexioCode/node-red-contrib-meross-cloud-devices#readme",
+  "node-red": {
+    "nodes": {
+      "lower-case": "lower-case.js"
+    }
+  }
+}
