@@ -24,7 +24,8 @@
       "lower-case": "nodes/lower-case.js",
       "merosslib-config": "nodes/merosslib-config.js",
       "smartplug": "nodes/smartplug.js",
-      "smarthub": "nodes/smarthub.js"
+      "smarthub": "nodes/smarthub.js",
+      "smart-presence-sensor": "nodes/smart-presence-sensor.js"
     }
   },
   "dependencies": {
