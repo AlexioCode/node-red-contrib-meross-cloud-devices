@@ -104,21 +104,23 @@ module.exports = function (RED) {
 
 						case 'energy':
 							_devices[i].getControlElectricity((err, res) => {
-								//console.log("electricity res", res);
-								//console.log("_devices[i]", _devices[i]);
-								if (res && res.electricity) {
-									messages.push(
-										{
-											payload: {
-												deviceName: _devices[i].dev.devName,
-												deviceDetails: _devices[i].dev,
-												...res.electricity
-											}
-										}
-									);
-
+								if (err) {
+									console.error("Error trying to invoke getControlElectricity function", err);
+									return;
 								}
-								//console.log("length=length", _devices.length, messages.length )
+
+								const payloadData = {
+									deviceName: _devices[i].dev.devName,
+									deviceDetails: _devices[i].dev
+								};
+								// Verify if res.electricity is available
+								if (res && res.electricity) {
+									Object.assign(payloadData, res);
+								} else {
+									console.warn("'res.electricity' is not available");
+								}
+								messages.push({ payload: payloadData });
+
 								call();
 							});
 							break;
