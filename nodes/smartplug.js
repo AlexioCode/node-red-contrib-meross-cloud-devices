@@ -126,49 +126,46 @@ module.exports = function (RED) {
 							break;
 						case 'on':
 							_devices[i].controlToggleX(0, 1, (err, res) => {
-								//console.log("res", res);
-								//console.log("_devices[i]", _devices[i]);
-								if (res) {
-									messages.push(
-										{
-											payload: {
-												deviceName: _devices[i].dev.devName,
-												deviceDetails: _devices[i].dev,
-												state: "on"
-											}
-										}
-									);
-
+								if (err) {
+									console.error("Error trying to invoke controlToggleX (on) function", err);
+									return;
 								}
-								//console.log("length=length", _devices.length, messages.length )
+
+								const payloadData = {
+									"deviceName": _devices[i].dev.devName,
+									"deviceDetails": _devices[i].dev,
+									"state": "on"
+								};
+								if (res)
+									messages.push({ payload: payloadData });
+
 								call();
 							});
 							break;
 						case 'off':
 							_devices[i].controlToggleX(0, 0, (err, res) => {
-								//console.log("res", res);
-								//console.log("_devices[i]", _devices[i]);
-								if (res) {
-									messages.push(
-										{
-											payload: {
-												deviceName: _devices[i].dev.devName,
-												deviceDetails: _devices[i].dev,
-												state: "off"
-											}
-										}
-									);
-
+								if (err) {
+									console.error("Error trying to invoke controlToggleX (off) function", err);
+									return;
 								}
-								//console.log("length=length", _devices.length, messages.length )
+
+								const payloadData = {
+									"deviceName": _devices[i].dev.devName,
+									"deviceDetails": _devices[i].dev,
+									"state": "off"
+								};
+								if (res)
+									messages.push({ payload: payloadData });
+
 								call();
 							});
 							break;
-					}
 
+					} // Switch end
+				} // for end
+			} // pushMessage(_devices) end
 
-				}
-			}
+			
 			//console.log("meross", meross);
 			if (!meross) {
 				if (this.config.username.length > 0 && this.config.password.length > 0) {
