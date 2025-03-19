@@ -1,4 +1,3 @@
-const request = require('request');
 const MerossCloud = require('@kronsi/meross-cloud');
 const deviceFilter = ["mss310", "mss210"];
 module.exports = function(RED) {
