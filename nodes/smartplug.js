@@ -161,9 +161,9 @@ module.exports = function (RED) {
 
 						case 'abilities':
 							_devices[i].getSystemAbilities((err, res) => {
-								if (err) 
+								if (err)
 									console.error("Error trying to invoke getSystemAbilities function", err);
-								
+
 								if (res && res.ability) {
 									messages.push(
 										{
@@ -178,6 +178,7 @@ module.exports = function (RED) {
 
 								call();
 							});
+							break;
 
 					} // Switch end
 				} // for end

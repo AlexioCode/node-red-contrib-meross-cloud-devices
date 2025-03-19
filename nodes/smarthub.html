@@ -1,44 +1,44 @@
 <script type="text/javascript">
-	RED.nodes.registerType('meross-smarthub',{
+	RED.nodes.registerType('meross-smarthub', {
 		category: 'MerossCloudDevices',
-		defaults: {	
+		defaults: {
 			confignode: { value: '', type: 'merosslib-config' },
 			name: { value: '' },
 			device: { value: '' },
 			action: { value: '' },
 			outputs: { value: 1 },
-			outputLabeleling: {value: "text"}
+			outputLabeleling: { value: "text" }
 		},
 		inputs: 1,				// set the number of inputs - only 0 or 1
 		outputs: 1,			 // set the number of outputs - 0 to n
-		outputLabels: ["stdout","stderr","rc"],
+		outputLabels: ["stdout", "stderr", "rc"],
 		icon: 'smarthub.png',  // saved in icons/myicon.png
-		color: '#005AFF', 
-		label: function() {
+		color: '#005AFF',
+		label: function () {
 			return this.name || 'Meross Smarthub';
 		},
-		outputLabels: function(index){
+		outputLabels: function (index) {
 			let label = this.outputLabeleling.split(",");
 			return label[index];
 		},
-		oneditprepare: function() {
-						
+		oneditprepare: function () {
+
 			function loadConfig(node) {
-                                
-                $.ajax({
+
+				$.ajax({
 					url: "smarthub_devices/" + node.id,
 					type: "GET",
 					contentType: "application/json; charset=utf-8",
-					success: function(resp){
+					success: function (resp) {
 						//console.log("resp", resp);
 						//var flowContext = this.context().flow;
-						
+
 						let optionList = [];
 						optionList.push({
 							value: "",
 							label: "-------"
 						})
-						for(let i=0; i < resp.length; i++ ){
+						for (let i = 0; i < resp.length; i++) {
 							optionList.push(
 								{
 									value: resp[i].uuid,
@@ -46,20 +46,22 @@
 								}
 							)
 						}
-						
-						$("#node-input-device").typedInput({type:"device", types:[{
-							value: "device",
-							multiple: true,
-							options: optionList
-						}]})
-						
-						$("#node-input-device").on("change", function(){
-							
-							if( this.value && this.value.split(",").length > 0 ){
+
+						$("#node-input-device").typedInput({
+							type: "device", types: [{
+								value: "device",
+								multiple: true,
+								options: optionList
+							}]
+						})
+
+						$("#node-input-device").on("change", function () {
+
+							if (this.value && this.value.split(",").length > 0) {
 								//console.log("set outputs to: " + this.value.split(",").length );
 								let values = this.value.split(",");
 								let labelList = [];
-								for(let i=0; i < values.length; i++){
+								for (let i = 0; i < values.length; i++) {
 									let option = optionList.filter((option) => values[i] == option.value)[0].label;
 									labelList.push(option);
 								}
@@ -68,26 +70,28 @@
 								$("#node-input-outputLabeleling").val(labelList);
 							}
 						})
-						
-						
+
+
 
 					},
-					error: function(err){
+					error: function (err) {
 						console.log("err", err);
 					}
 				})
-            }
+			}
 			loadConfig(this);
 
-			$("#node-input-action").typedInput({type:"action", types:[{
-				value: "action",
-				options: [
-					{ value: "state", label: "State"},
-					{ value: "abilities", label: "Abilities"}
-				]
-			}]})
-			
-		},		
+			$("#node-input-action").typedInput({
+				type: "action", types: [{
+					value: "action",
+					options: [
+						{ value: "state", label: "State" },
+						{ value: "abilities", label: "Abilities" }
+					]
+				}]
+			})
+
+		},
 		paletteLabel: 'Meross Smarthub'
 	});
 </script>
