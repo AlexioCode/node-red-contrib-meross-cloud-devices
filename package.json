@@ -21,12 +21,12 @@
   "node-red": {
     "version": ">=4.0.0",
     "nodes": {
-      "lower-case": "nodes/lower-case.js",
       "merosslib-config": "nodes/merosslib-config.js",
       "smartplug": "nodes/smartplug.js",
       "smarthub": "nodes/smarthub.js",
       "smart-presence-sensor": "nodes/smart-presence-sensor.js",
-      "smartswitch": "nodes/smartswitch.js"
+      "smartswitch": "nodes/smartswitch.js",
+      "smartgarage": "nodes/smartgarage.js"
     }
   },
   "dependencies": {
