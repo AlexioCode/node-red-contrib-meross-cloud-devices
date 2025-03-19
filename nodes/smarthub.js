@@ -84,10 +84,8 @@ module.exports = function (RED) {
 					switch (node.action) {
 						case 'state':
 							_devices[i].getSystemAllData((err, res) => {
-								if (err) {
+								if (err)
 									console.error("Error trying to invoke getSystemAllData function", err);
-									return;
-								}
 
 								const payloadData = {
 									deviceName: _devices[i].dev.devName,
@@ -107,10 +105,9 @@ module.exports = function (RED) {
 
 						case 'abilities':
 							_devices[i].getSystemAbilities((err, res) => {
-								if (err) {
+								if (err) 
 									console.error("Error trying to invoke getSystemAbilities function", err);
-									return;
-								}
+								
 								if (res && res.ability) {
 									messages.push(
 										{

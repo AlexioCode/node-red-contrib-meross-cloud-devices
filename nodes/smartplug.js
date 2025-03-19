@@ -85,10 +85,8 @@ module.exports = function (RED) {
 					switch (node.action) {
 						case 'state':
 							_devices[i].getSystemAllData((err, res) => {
-								if (err) {
+								if (err)
 									console.error("Error trying to invoke getSystemAllData function", err);
-									return;
-								}
 
 								const payloadData = {
 									deviceName: _devices[i].dev.devName,
@@ -108,10 +106,8 @@ module.exports = function (RED) {
 
 						case 'energy':
 							_devices[i].getControlElectricity((err, res) => {
-								if (err) {
+								if (err)
 									console.error("Error trying to invoke getControlElectricity function", err);
-									return;
-								}
 
 								const payloadData = {
 									deviceName: _devices[i].dev.devName,
@@ -131,10 +127,8 @@ module.exports = function (RED) {
 
 						case 'on':
 							_devices[i].controlToggleX(0, 1, (err, res) => {
-								if (err) {
+								if (err)
 									console.error("Error trying to invoke controlToggleX (on) function", err);
-									return;
-								}
 
 								const payloadData = {
 									"deviceName": _devices[i].dev.devName,
@@ -150,10 +144,8 @@ module.exports = function (RED) {
 
 						case 'off':
 							_devices[i].controlToggleX(0, 0, (err, res) => {
-								if (err) {
+								if (err)
 									console.error("Error trying to invoke controlToggleX (off) function", err);
-									return;
-								}
 
 								const payloadData = {
 									"deviceName": _devices[i].dev.devName,
@@ -169,10 +161,9 @@ module.exports = function (RED) {
 
 						case 'abilities':
 							_devices[i].getSystemAbilities((err, res) => {
-								if (err) {
+								if (err) 
 									console.error("Error trying to invoke getSystemAbilities function", err);
-									return;
-								}
+								
 								if (res && res.ability) {
 									messages.push(
 										{
