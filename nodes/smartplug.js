@@ -90,7 +90,7 @@ module.exports = function (RED) {
 									deviceName: _devices[i].dev.devName,
 									deviceDetails: _devices[i].dev
 								};
-								// Verify res.all is available
+								// Verify if res.all is available
 								if (res && res.all) {
 									Object.assign(payloadData, res.all);
 								} else {
