@@ -123,7 +123,7 @@ module.exports = function (RED) {
 								call();
 							});
 							break;
-							
+
 						case 'close':
 							_devices[i].controlGarageDoor(0, 0, (err, res) => {
 								if (err)
