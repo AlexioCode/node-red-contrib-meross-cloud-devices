@@ -1,5 +1,9 @@
 const MerossCloud = require('@kronsi/meross-cloud');
-const deviceFilter = ["mss210", "mss310", "mss315"];
+const deviceModelFilter = ["mss210", "mss310", "mss315"];
+function isSmartplug(deviceType) {
+	return deviceType.includes("mss") || deviceModelFilter.includes(deviceType);
+}
+
 module.exports = function (RED) {
 	'use strict';
 
@@ -203,7 +207,7 @@ module.exports = function (RED) {
 					meross = new MerossCloud(options);
 					meross.on('deviceInitialized', (deviceId, deviceDef, device) => {
 						//console.log('deviceInitialized' + deviceId + ': ' , deviceDef);
-						if (deviceFilter.includes(deviceDef.deviceType)) {
+						if (isSmartplug(deviceDef.deviceType)) {
 							currentDevices.push(device);
 						}
 						else {
@@ -297,7 +301,7 @@ module.exports = function (RED) {
 					if (devList.length == 0) {
 						meross.on('deviceInitialized', (deviceId, deviceDef, device) => {
 							//console.log('deviceInitialized ' + deviceId + ': ' , deviceDef);
-							if (deviceFilter.includes(deviceDef.deviceType)) {
+							if (isSmartplug(deviceDef.deviceType)) {
 								devList.push(deviceDef);
 							}
 							else {
@@ -311,7 +315,7 @@ module.exports = function (RED) {
 							console.log('connect error: ' + error);
 							let deviceCounter = 0;
 							for (let key in meross.devices) {
-								if (deviceFilter.includes(meross.devices[key].dev.deviceType)) {
+								if (isSmartplug(meross.devices[key].dev.deviceType)) {
 									deviceCounter++;
 								}
 							}
