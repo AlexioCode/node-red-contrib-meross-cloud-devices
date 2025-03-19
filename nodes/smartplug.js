@@ -1,7 +1,7 @@
 const MerossCloud = require('@kronsi/meross-cloud');
 const deviceModelFilter = ["mss210", "mss310", "mss315"];
 function isSmartplug(deviceType) {
-	return deviceType.includes("mss") || deviceModelFilter.includes(deviceType);
+	return deviceModelFilter.includes(deviceType);
 }
 
 module.exports = function (RED) {

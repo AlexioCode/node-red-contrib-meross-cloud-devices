@@ -25,7 +25,8 @@
       "merosslib-config": "nodes/merosslib-config.js",
       "smartplug": "nodes/smartplug.js",
       "smarthub": "nodes/smarthub.js",
-      "smart-presence-sensor": "nodes/smart-presence-sensor.js"
+      "smart-presence-sensor": "nodes/smart-presence-sensor.js",
+      "smartswitch": "nodes/smartswitch.js"
     }
   },
   "dependencies": {
