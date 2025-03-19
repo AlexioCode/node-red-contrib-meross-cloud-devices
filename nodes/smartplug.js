@@ -124,6 +124,7 @@ module.exports = function (RED) {
 								call();
 							});
 							break;
+
 						case 'on':
 							_devices[i].controlToggleX(0, 1, (err, res) => {
 								if (err) {
@@ -142,6 +143,7 @@ module.exports = function (RED) {
 								call();
 							});
 							break;
+
 						case 'off':
 							_devices[i].controlToggleX(0, 0, (err, res) => {
 								if (err) {
@@ -161,11 +163,32 @@ module.exports = function (RED) {
 							});
 							break;
 
+						case 'abilities':
+							_devices[i].getSystemAbilities((err, res) => {
+								if (err) {
+									console.error("Error trying to invoke getSystemAbilities function", err);
+									return;
+								}
+								if (res && res.ability) {
+									messages.push(
+										{
+											payload: {
+												deviceName: _devices[i].dev.devName,
+												deviceDetails: _devices[i].dev,
+												ability: res.ability
+											}
+										}
+									);
+								}
+
+								call();
+							});
+
 					} // Switch end
 				} // for end
 			} // pushMessage(_devices) end
 
-			
+
 			//console.log("meross", meross);
 			if (!meross) {
 				if (this.config.username.length > 0 && this.config.password.length > 0) {
