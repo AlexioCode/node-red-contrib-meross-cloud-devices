@@ -1,6 +1,6 @@
 const MerossCloud = require('@kronsi/meross-cloud');
 function isSmartPresenceSensor(deviceType) {
- 	return deviceType == "ms600";
+	return deviceType == "ms600";
 }
 
 module.exports = function (RED) {
@@ -129,6 +129,7 @@ module.exports = function (RED) {
 			} // pushMessage(_devices) end
 
 
+			// Meross Cloud Initialization
 			//console.log("meross", meross);
 			if (!meross) {
 				if (this.config.username.length > 0 && this.config.password.length > 0) {
@@ -141,6 +142,9 @@ module.exports = function (RED) {
 						timeout: 3000 // Default is 3000
 					};
 					meross = new MerossCloud(options);
+
+
+					// Meross event handlers
 					meross.on('deviceInitialized', (deviceId, deviceDef, device) => {
 						//console.log('deviceInitialized' + deviceId + ': ' , deviceDef);
 						if (isSmartPresenceSensor(deviceDef.deviceType)) {
@@ -168,6 +172,7 @@ module.exports = function (RED) {
 					});
 
 
+					// Connection to the Meross devices
 					meross.connect(node.device.split(","), (error) => {
 						if (error) {
 							console.log('connect error: ' + error);
@@ -187,6 +192,7 @@ module.exports = function (RED) {
 					});
 				}
 				else {
+					// If credentials aren't entered (username and password)
 					//send 401 not auth message
 					console.error("401");
 					this.status({ fill: "red", shape: "dot", text: "Unauthorized" });
@@ -194,6 +200,7 @@ module.exports = function (RED) {
 			}
 
 
+			// Messages sending	if there are connected devices
 			if (currentDevices && currentDevices.length > 0) {
 				pushMessage(currentDevices);
 			}
@@ -214,6 +221,7 @@ module.exports = function (RED) {
 
 	RED.nodes.registerType('meross-smart-presence-sensor', SmartPresenceSensorNode);
 
+	// HTTP endpoint to obtain the list of devices
 	RED.httpAdmin.get(
 		"/smart-presence-sensor_devices/:nodeid",
 		RED.auth.needsPermission("meross-smart-presence-sensor.write"),
