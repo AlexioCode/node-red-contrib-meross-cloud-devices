@@ -11,4 +11,4 @@ It is based on the \"node-red-contrib-meross-cloud\" Node-RED module, from @kron
 
 To install this node, you can clone the repository and use the command 
 
-*npm init \node-red-contrib-meross-cloud-devices*
+*npm init /node-red-contrib-meross-cloud-devices*
