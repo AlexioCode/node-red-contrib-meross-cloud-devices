@@ -80,7 +80,6 @@ module.exports = function (RED) {
 					}
 				}
 				for (let i = 0; i < _devices.length; i++) {
-					//console.log("_devices[i]", _devices[i]);
 					switch (node.action) {
 						case 'state':
 							_devices[i].getSystemAllData((err, res) => {
@@ -92,11 +91,11 @@ module.exports = function (RED) {
 									deviceDetails: _devices[i].dev,
 								};
 								// Verify if res.all is available
-								if (res && res.all) {
+								if (res && res.all)
 									Object.assign(payloadData, res.all);
-								} else {
+								else
 									console.warn("'res.all' is not available");
-								}
+
 								messages.push({ payload: payloadData });
 
 								call();

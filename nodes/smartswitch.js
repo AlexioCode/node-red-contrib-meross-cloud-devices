@@ -94,11 +94,10 @@ module.exports = function (RED) {
 									deviceDetails: _devices[i].dev
 								};
 								// Verify if res.all is available
-								if (res && res.all) {
+								if (res && res.all)
 									Object.assign(payloadData, res.all);
-								} else {
+								else
 									console.warn("'res.all' is not available");
-								}
 								messages.push({ payload: payloadData });
 
 								call();

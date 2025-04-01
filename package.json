@@ -7,7 +7,7 @@
     "url": "https://github.com/AlexioCode/node-red-contrib-meross-cloud-devices.git"
   },
   "keywords": [
-    "Meross", "Node-RED", "Smart Home", "IoT"
+    "Meross", "Node-RED", "Smart Home", "IoT", "Sensor"
   ],
   "author": "Alejandro Pedro Alonso-Basurto Díaz",
   "license": "ISC",
