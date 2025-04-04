@@ -1,0 +1,302 @@
+[
+    {
+        "id": "ad1ccc1303810b4d",
+        "type": "tab",
+        "label": "example1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fa819a99c7aa4f51",
+        "type": "inject",
+        "z": "ad1ccc1303810b4d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 740,
+        "wires": [
+            [
+                "2842168b6e38085e",
+                "129e6eb1b3ee2e14",
+                "950efe4bb89c5f2a",
+                "c5167034be4e7dd5",
+                "afc910245fcbdea6"
+            ]
+        ]
+    },
+    {
+        "id": "2842168b6e38085e",
+        "type": "meross-smarthub",
+        "z": "ad1ccc1303810b4d",
+        "confignode": "dcfda113649cdcbb",
+        "name": "",
+        "device": "",
+        "action": "state",
+        "outputs": 1,
+        "outputLabeleling": "Smart Hub",
+        "x": 530,
+        "y": 440,
+        "wires": [
+            [
+                "620e2a70c52504cf",
+                "f81d68b37367ea7a",
+                "6dffe69d318779e6",
+                "ef1cf014324bc354",
+                "79c96fa75ef07add",
+                "a9069cceebcf09c2",
+                "0e8f9e7af3e414c8"
+            ]
+        ]
+    },
+    {
+        "id": "620e2a70c52504cf",
+        "type": "debug",
+        "z": "ad1ccc1303810b4d",
+        "name": "SmartHub State",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "129e6eb1b3ee2e14",
+        "type": "meross-smartplug",
+        "z": "ad1ccc1303810b4d",
+        "confignode": "dcfda113649cdcbb",
+        "name": "",
+        "device": "",
+        "action": "energy",
+        "outputs": 1,
+        "outputLabeleling": "text",
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "8afe1c075b760098"
+            ]
+        ]
+    },
+    {
+        "id": "950efe4bb89c5f2a",
+        "type": "meross-smart-presence-sensor",
+        "z": "ad1ccc1303810b4d",
+        "confignode": "dcfda113649cdcbb",
+        "name": "",
+        "device": "",
+        "action": "abilities",
+        "outputs": 1,
+        "outputLabeleling": "text",
+        "x": 570,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5167034be4e7dd5",
+        "type": "meross-smartswitch",
+        "z": "ad1ccc1303810b4d",
+        "confignode": "dcfda113649cdcbb",
+        "name": "",
+        "device": "",
+        "action": "on",
+        "outputs": 1,
+        "outputLabeleling": "text",
+        "x": 540,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "afc910245fcbdea6",
+        "type": "meross-smartgarage",
+        "z": "ad1ccc1303810b4d",
+        "confignode": "dcfda113649cdcbb",
+        "name": "",
+        "device": "",
+        "action": "close",
+        "outputs": 1,
+        "outputLabeleling": "text",
+        "x": 560,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f81d68b37367ea7a",
+        "type": "function",
+        "z": "ad1ccc1303810b4d",
+        "name": "temperature",
+        "func": "if (msg && Object.keys(msg).length > 0) {\n    msg.payload = {\n        \"temperature\": msg.payload.digest.hub.subdevice[3].tempHumi.temp / 100\n    };\n}\nelse {\n    msg.payload = {\n        \"error\": \"Failed to receive sensor data\"\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6dffe69d318779e6",
+        "type": "function",
+        "z": "ad1ccc1303810b4d",
+        "name": "humidity",
+        "func": "if (msg && Object.keys(msg).length > 0) {\n    msg.payload = {\n        \"humidity\": msg.payload.digest.hub.subdevice[3].tempHumi.humi / 10\n    };\n}\nelse {\n    msg.payload = {\n        \"error\": \"Failed to receive sensor data\"\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef1cf014324bc354",
+        "type": "function",
+        "z": "ad1ccc1303810b4d",
+        "name": "status smoke alarm 1",
+        "func": "if (msg && Object.keys(msg).length > 0) {\n    msg.payload = {\n        \"status\": msg.payload.digest.hub.subdevice[0].smokeAlarm.status\n    };\n}\nelse {\n    msg.payload = {\n        \"error\": \"Failed to receive sensor data\"\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79c96fa75ef07add",
+        "type": "function",
+        "z": "ad1ccc1303810b4d",
+        "name": "status smoke alarm 2",
+        "func": "if (msg && Object.keys(msg).length > 0) {\n    msg.payload = {\n        \"status\": msg.payload.digest.hub.subdevice[1].smokeAlarm.status\n    };\n}\nelse {\n    msg.payload = {\n        \"error\": \"Failed to receive sensor data\"\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9069cceebcf09c2",
+        "type": "function",
+        "z": "ad1ccc1303810b4d",
+        "name": "status smoke alarm 3",
+        "func": "if (msg && Object.keys(msg).length > 0) {\n    msg.payload = {\n        \"status\": msg.payload.digest.hub.subdevice[2].smokeAlarm.status\n    };\n}\nelse {\n    msg.payload = {\n        \"error\": \"Failed to receive sensor data\"\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0e8f9e7af3e414c8",
+        "type": "function",
+        "z": "ad1ccc1303810b4d",
+        "name": "temperature with metadata",
+        "func": "if (msg && Object.keys(msg).length > 0) {\n    var sensorTs = msg.payload.system.time.timestamp;\n    var sensorId = \"Smart Temperature and Humidity Sensor\";\n    var location = \"Kitchen\";\n    var value = msg.payload.digest.hub.subdevice[3].tempHumi.temp / 100;\n    var unit = \"Degrees Celsius\";\n\n    msg.payload = {};\n    msg.payload.sensorTs = sensorTs;\n    msg.payload.sensorId = sensorId;\n    msg.payload.location = location;\n    msg.payload.value = value;\n    msg.payload.unit = unit;\n}\nelse {\n    msg.payload = {\n        \"error\": \"Failed to receive sensor data\"\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8afe1c075b760098",
+        "type": "debug",
+        "z": "ad1ccc1303810b4d",
+        "name": "Electricity Control",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "4c37e0705e886a6c",
+        "type": "comment",
+        "z": "ad1ccc1303810b4d",
+        "name": "Switch On",
+        "info": "",
+        "x": 540,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "f5a2a3aa749d6a81",
+        "type": "comment",
+        "z": "ad1ccc1303810b4d",
+        "name": "Close Garage Door",
+        "info": "",
+        "x": 550,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "dcfda113649cdcbb",
+        "type": "merosslib-config",
+        "name": "MyMeross",
+        "username": "MyMerossUsername",
+        "password": "MyMerossUsernamePassword"
+    }
+]
