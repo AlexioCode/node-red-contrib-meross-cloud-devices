@@ -9,6 +9,6 @@ It includes nodes for:
 
 It is based on the \"node-red-contrib-meross-cloud\" Node-RED module, from @kronsi.
 
-To install this node, you can clone the repository and use the command 
+To install this module, you can clone the repository or issue the command 
 
 *npm init /node-red-contrib-meross-cloud-devices*
