@@ -156,7 +156,7 @@ module.exports = function (RED) {
 											payload: {
 												deviceName: _devices[i].dev.devName,
 												deviceDetails: _devices[i].dev,
-												ability: res.ability
+												abilities: res.ability
 											}
 										}
 									);
