@@ -7,8 +7,8 @@ It includes nodes for:
 - Smart Presence Sensors
 - Smart Garage Door Openers.
 
-It is based on the \"node-red-contrib-meross-cloud\" Node-RED module, from @kronsi.
+To install this module, you can clone the repository or issue the command:
 
-To install this module, you can clone the repository or issue the command 
+`npm init /node-red-contrib-meross-cloud-devices`
 
-*npm init /node-red-contrib-meross-cloud-devices*
+It is inspired on the \"@kronsi/node-red-contrib-meross-cloud\" Node-RED module.
