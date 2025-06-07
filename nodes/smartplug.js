@@ -66,6 +66,7 @@ module.exports = function (RED) {
 									Object.assign(payloadData, res);
 								} else {
 									console.warn("'res.electricity' is not available");
+									Object.assign(payloadData, { electricity: null });
 								}
 								messages.push({ payload: payloadData });
 
