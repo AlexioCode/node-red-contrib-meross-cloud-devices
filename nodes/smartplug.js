@@ -11,57 +11,6 @@ module.exports = function (RED) {
 		RED.nodes.createNode(this, node);
 		this.config = RED.nodes.getNode(node.confignode);
 		let meross = null;
-		//if(deviceDefList.length == 0){
-
-
-		//internal server error
-		/*
-
-		if(this.config.username.length > 0 && this.config.password.length >0 &&){
-			const options = {
-				email: this.config.username,
-				password: this.config.password,
-				logger: console.log,
-				localHttpFirst: false, // Try to contact the devices locally before trying the cloud
-				onlyLocalForGet: true, // When trying locally, do not try the cloud for GET requests at all
-				timeout: 3000 // Default is 3000
-			};			
-			const meross =new MerossCloud(options);
-			
-			//console.log("meross", meross)
-		}
-		
-		meross.on('deviceInitialized', (deviceId, deviceDef, device) => {	
-			deviceDefList.push(deviceDef);
-			deviceList.push(device);
-			console.log('New device ' + deviceId + ': ' , deviceDef);
-			//console.warn('device: ', device);					
-		});
-		meross.on('connected', (deviceId) => {
-			console.log(deviceId + ' connected');
-		});
-		
-		meross.on('close', (deviceId, error) => {
-			console.log(deviceId + ' closed: ' + error);
-		});
-		
-		meross.on('error', (deviceId, error) => {
-			console.log(deviceId + ' error: ' + error);
-		});
-		
-		meross.on('reconnect', (deviceId) => {
-			console.log(deviceId + ' reconnected');
-		});
-		
-		meross.on('data', (deviceId, payload) => {
-			console.log(deviceId + ' data: ', payload);
-		});
-
-		meross.connect(node.device,(error) => {
-			console.log('connect error: ' + error);
-		});
-		*/
-		//}
 
 		let currentDevices = [];
 
