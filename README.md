@@ -1,15 +1,20 @@
 # node-red-contrib-meross-cloud-devices
 A module for Node-RED that allows to retreive information from our online **Meross devices** (using Meross Cloud) and control them.
 
-It includes nodes for:
+It includes nodes for the following devices:
 - Smart Plugs
 - Smart Switches
 - Smart Hubs
 - Smart Presence Sensors
 - Smart Garage Door Openers
 
-To install this module, you can clone the repository or issue the command:
+Not all devices are supported (*still working in progress*).
+This module is inspired on the \"@kronsi/node-red-contrib-meross-cloud\" Node-RED module.
+
+## Installation
+
+To install this module, you can just use the Node-RED palette.
+
+Alternatively, you can also clone this repository and issue the command:
 
 `npm init /node-red-contrib-meross-cloud-devices`
-
-It is inspired on the \"@kronsi/node-red-contrib-meross-cloud\" Node-RED module.
