@@ -8,8 +8,7 @@ It includes nodes for the following devices:
 - Smart Presence Sensors
 - Smart Garage Door Openers
 
-Not all devices are supported (*still working in progress*).
-This module is inspired on the \"@kronsi/node-red-contrib-meross-cloud\" Node-RED module.
+Not all devices are supported (*still working in progress*). This module it's a extended and modified version of the \"@kronsi/node-red-contrib-meross-cloud\" module, that allows to retreive information from our online Meross devices (using Meross Cloud) and control them.
 
 ## Installation
 
